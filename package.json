@@ -1,0 +1,12 @@
+{
+  "name": "weda-sainik-rms-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WEDA - The Winning Edge Defence Academy. One-page landing site for Sainik School & RMS entrance preparation (Class 6th & 9th) with Razorpay demo registration.",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "node test/selftest.js"
+  }
+}
