@@ -6,7 +6,7 @@ a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
 header{background:var(--bg-alt);border-bottom:1px solid var(--line);padding:18px 0}
 .hd{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px}
-.brand .mk{width:34px;height:34px;border-radius:9px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:15px}
+.brand img{height:40px;width:auto;display:block}
 .brand b{font-family:var(--font-d);font-size:15px;letter-spacing:.02em;font-weight:400}
 .brand b i{color:var(--red);font-style:normal}
 .back{font-family:var(--font-m);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gry-lt)}
