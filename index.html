@@ -187,6 +187,8 @@ h2 .r{color:var(--red)}
 .video-thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 10px 30px -8px rgba(225,29,46,.9);transition:transform .3s var(--ease),background .3s var(--ease)}
 .video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--red-hot)}
 .video-thumb .play svg{width:20px;height:20px;color:#fff;margin-left:2px}
+.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;z-index:3}
+.video-thumb.playing::before,.video-thumb.playing .play,.video-thumb.playing .who{display:none}
 .video-thumb .dur{position:absolute;right:11px;bottom:11px;z-index:2;background:rgba(12,12,14,.82);color:#fff;font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;padding:4px 8px;border-radius:5px}
 .video-thumb .who{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
 .video-thumb .who b{display:block;font-family:var(--font-d);font-size:15px;letter-spacing:.02em}
@@ -588,7 +590,7 @@ footer ul a:hover{color:var(--red)}
         </a>
         <h3>GUIDANCE FROM EXPERIENCE.<br><span style="color:var(--red)">PREPARATION WITH PURPOSE.</span></h3>
         <p>The complete RMS, RIMC and Sainik School exam strategy at WEDA.</p>
-        <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-ext"/></svg> Watch on YouTube</span>
+        <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-play"/></svg> Play the video</span>
       </aside>
     </div>
   </div>
@@ -941,20 +943,34 @@ const WEDA = {
     a.setAttribute("rel", "noopener");
   });
 
-  /* ---------- YouTube: static card, external tab, zero scripts on load ---------- */
+  /* ---------- YouTube: static card until clicked, then it plays here ----------
+     Nothing from YouTube is requested until the visitor clicks, so the page
+     still loads with no player, no YouTube script and no cost. ---------- */
   const vLink = $("#videoLink");
+  const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/); return m ? m[1] : null; };
   if (vLink){
-    const configured = WEDA.youtubeUrl && !/^\[INSERT/.test(WEDA.youtubeUrl);
-    vLink.href = configured ? WEDA.youtubeUrl : "#";
+    const id = ytId(WEDA.youtubeUrl);
+    vLink.href = id ? WEDA.youtubeUrl : "#";
     vLink.addEventListener("click", e=>{
-      if(!configured){
-        e.preventDefault();
+      e.preventDefault();
+      if (vLink.classList.contains("playing")) return;
+      if (!id){
         const card = vLink.closest(".video-card");
         let note = card.querySelector(".alert");
         if(!note){ note = document.createElement("div"); note.className = "alert"; card.appendChild(note); }
         note.className = "alert warn show";
-        note.innerHTML = "<b>Video not set yet</b>Set <code>WEDA.youtubeUrl</code> in index.html to the Col Amardeep SM (Retd) video. The card will then open YouTube in a new tab.";
+        note.innerHTML = "<b>Video not set yet</b>Set <code>WEDA.youtubeUrl</code> in index.html to the video you want to play here.";
+        return;
       }
+      const f = document.createElement("iframe");
+      f.className = "video-frame";
+      f.src = "https://www.youtube-nocookie.com/embed/" + id +
+              "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      f.title = "WEDA - exam strategy video";
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.allowFullscreen = true;
+      vLink.classList.add("playing");
+      vLink.appendChild(f);
     });
   }
 
