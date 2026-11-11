@@ -403,7 +403,16 @@ footer ul a:hover{color:var(--red)}
   .mob-menu a{display:block;padding:12px 14px;border-radius:12px;font-family:var(--font-m);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gry-lt)}
   .mob-menu a:hover{background:rgba(12,12,14,.05);color:var(--ink)}
   .mob-menu .mm-cta{display:grid;gap:8px;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
-  .hero-grid,.why-grid,.split,.demo-grid{grid-template-columns:1fr;gap:38px}
+  .why-grid,.split,.demo-grid{grid-template-columns:1fr;gap:38px}
+  .hero-grid{grid-template-columns:1fr;gap:0}
+  .hero-grid>div:first-child{display:contents}
+  .hero-badge{order:1}
+  .hero-grid h1{order:2}
+  .hero-sub{order:3}
+  .badges{order:4}
+  .hero-shot{order:5;margin:28px 0 2px}
+  .hero-cta{order:6}
+  .hero-trust{order:7}
   .split.rev .txt{order:0}
   .video-card{position:static}
   .hero-shot{max-width:560px}
@@ -560,17 +569,17 @@ footer ul a:hover{color:var(--red)}
         <div class="eyebrow"><span class="dot"></span><span class="num">02 &mdash; THE ACADEMY</span></div>
         <h2>WHY CHOOSE <span class="r">WEDA?</span></h2>
       </div>
-      <div class="aside">// Preparation built on structure, mentorship and discipline</div>
+      <div class="aside">// Structure &middot; Mentorship &middot; Discipline</div>
     </div>
-    <p class="lede rv" style="margin:-14px 0 28px">Led by experienced faculty and defence veterans since 2019, WEDA provides structured academic preparation, complete mentorship and personality development for students aspiring to join prestigious military schools.</p>
+    <p class="lede rv" style="margin:-14px 0 28px">Led by experienced faculty and defence veterans since 2019.</p>
     <div class="why-grid">
       <div class="grid-2 rv">
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-faculty"/></svg></div><div><h3>Experienced Faculty</h3><p>Educators who understand the requirements, examination patterns and preparation strategies for military school entrance examinations.</p></div></article>
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-discipline"/></svg></div><div><h3>Veteran-Led Leadership</h3><p>Guidance and strategic direction from defence veterans who bring real military values, discipline and leadership into the learning environment.</p></div></article>
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-mentor"/></svg></div><div><h3>Complete Mentorship</h3><p>Mentorship covering academic progress, doubt resolution, study planning, discipline and individual development.</p></div></article>
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-complete"/></svg></div><div><h3>Multiple Exam Preparation</h3><p>Sainik School, Rashtriya Military Schools, UP Sainik School (UPSS) and Jawahar Navodaya Vidyalaya (JNV).</p></div></article>
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-fitness"/></svg></div><div><h3>Physical Fitness &amp; Personality Development</h3><p>Physical fitness, confidence, communication, discipline and overall personality development.</p></div></article>
-        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-test"/></svg></div><div><h3>Weekly Tests</h3><p>Weekly assessments to evaluate performance, identify learning gaps and improve examination readiness.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-faculty"/></svg></div><div><h3>Experienced Faculty</h3><p>Educators who know these entrance exams and what they demand.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-discipline"/></svg></div><div><h3>Veteran-Led Leadership</h3><p>Real military values, discipline and leadership in the classroom.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-mentor"/></svg></div><div><h3>Complete Mentorship</h3><p>Academic progress, doubts, study planning and discipline.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-complete"/></svg></div><div><h3>Multiple Exam Preparation</h3><p>Sainik School, RMS, UPSS and JNV.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-fitness"/></svg></div><div><h3>Physical Fitness &amp; Personality Development</h3><p>Fitness, confidence, communication and discipline.</p></div></article>
+        <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-test"/></svg></div><div><h3>Weekly Tests</h3><p>Weekly assessments to find gaps and build exam readiness.</p></div></article>
       </div>
       <aside class="video-card rv">
         <a class="video-thumb" id="videoLink" href="#" target="_blank" rel="noopener" style="--img:url('assets/col-amardeep.webp')" aria-label="Watch the video with Col Amardeep SM (Retd) on YouTube, opens in a new tab">
@@ -578,7 +587,7 @@ footer ul a:hover{color:var(--red)}
           <span class="who"><b>COL AMARDEEP SM (RETD)</b><span>Founder &amp; Director, WEDA</span></span>
         </a>
         <h3>GUIDANCE FROM EXPERIENCE.<br><span style="color:var(--red)">PREPARATION WITH PURPOSE.</span></h3>
-        <p>Discover the importance of early preparation and understand the advantages of Sainik School and RMS education through insights from Col Amardeep SM (Retd), Founder &amp; Director of WEDA.</p>
+        <p>Why early preparation matters, and what a Sainik School or RMS education gives your child.</p>
         <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-ext"/></svg> Watch on YouTube</span>
       </aside>
     </div>
@@ -596,7 +605,7 @@ footer ul a:hover{color:var(--red)}
         <div class="eyebrow"><span class="we-chip">WE</span><span class="num">03 &mdash; THE SCHOOLS</span></div>
         <h2>DISCOVER <span class="r">SAINIK SCHOOLS</span></h2>
       </div>
-      <div class="aside">// Academic excellence &middot; Discipline &middot; Leadership</div>
+      <div class="aside">// Academics &middot; Discipline &middot; Leadership</div>
     </div>
     <div class="split rv">
       <div class="txt">
@@ -707,7 +716,7 @@ footer ul a:hover{color:var(--red)}
         <div class="eyebrow"><span class="we-chip">WE</span><span class="num">06 &mdash; THE BATCHES</span></div>
         <h2>LEARN YOUR WAY. <span class="r">PREPARE WITH WEDA.</span></h2>
       </div>
-      <div class="aside">// Choose the learning environment that works best for your child</div>
+      <div class="aside">// Online or offline &mdash; your choice</div>
     </div>
     <div class="grid-2 rv" style="gap:20px">
       <article class="mode">
@@ -750,7 +759,7 @@ footer ul a:hover{color:var(--red)}
       <div class="rv">
         <div class="eyebrow"><span class="dot"></span><span class="num">07 &mdash; THE DEMO</span></div>
         <h2>EXPERIENCE WEDA<br><span class="r">BEFORE YOU DECIDE!</span></h2>
-        <p class="lede" style="margin-top:20px">Give your child an opportunity to experience our teaching methodology, academic environment and preparation programme before making a commitment.</p>
+        <p class="lede" style="margin-top:20px">Experience our teaching, our faculty and our preparation system before you commit.</p>
         <ul class="demo-pts">
           <li><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg> 5+1 days of demo classes</li>
           <li><svg viewBox="0 0 24 24"><use href="#i-faculty"/></svg> Interaction with experienced faculty</li>
@@ -763,7 +772,7 @@ footer ul a:hover{color:var(--red)}
         <div class="mono" style="color:rgba(255,255,255,.5)">Demo registration fee</div>
         <div class="amt"><sup>&#8377;</sup>500</div>
         <div class="lbl">Refundable Registration Fee</div>
-        <p class="note">Refundable if you decide not to continue after completing the demo classes. Contact our team within 72 hours. <a href="refund.html" style="color:#fff;text-decoration:underline">Refund Policy</a>.</p>
+        <p class="note">Refundable if your child does not continue. Tell us within 72 hours. <a href="refund.html" style="color:#fff;text-decoration:underline">Refund Policy</a>.</p>
         <a class="btn btn-red btn-lg btn-block" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
         <div class="secure"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg> Secure checkout by Razorpay</div>
       </div>
@@ -778,7 +787,7 @@ footer ul a:hover{color:var(--red)}
     <div class="rv" style="position:relative;z-index:1">
       <div class="eyebrow" style="justify-content:center"><span class="dot"></span><span class="num">08 &mdash; YOUR NEXT STEP</span></div>
       <h2>YOUR CHILD'S JOURNEY TOWARDS A <span class="r">DISCIPLINED FUTURE</span> BEGINS HERE!</h2>
-      <p>Give your child the right guidance, structured preparation and mentorship to take the first step towards a life in uniform.</p>
+      <p>The right guidance, preparation and mentorship for the first step towards a life in uniform.</p>
       <div class="fb">
         <a href="#" class="btn btn-outline-wht btn-lg" data-admit><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Apply for Admission</a>
         <a class="btn btn-red btn-lg" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
@@ -793,7 +802,7 @@ footer ul a:hover{color:var(--red)}
     <div class="foot-grid">
       <div class="foot-brand">
         <img src="assets/logo-full.png" alt="WEDA - The Winning Edge Defence Academy" loading="lazy">
-        <p>India's top defence training institute, shaping future officers year after year. Offline, online and digital &mdash; the academy travels with every aspirant.</p>
+        <p>Sainik School and RMS entrance preparation for Class 6th and Class 9th. Online, offline and digital.</p>
         <div class="motto">WEDA &mdash; Since 2019</div>
         <address style="font-style:normal;font-size:13px;color:var(--gry);line-height:1.6;margin-top:14px">WEDA Tower, Kailash Vihar,<br>Sunderwala, Dehradun,<br>Uttarakhand 248008, India</address>
       </div>
