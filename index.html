@@ -187,8 +187,12 @@ h2 .r{color:var(--red)}
 .video-thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 10px 30px -8px rgba(225,29,46,.9);transition:transform .3s var(--ease),background .3s var(--ease)}
 .video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--red-hot)}
 .video-thumb .play svg{width:20px;height:20px;color:#fff;margin-left:2px}
-.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;z-index:3}
-.video-thumb.playing::before,.video-thumb.playing .play,.video-thumb.playing .who{display:none}
+.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;z-index:3;opacity:0;transition:opacity .35s var(--ease)}
+.video-frame.ready{opacity:1}
+.v-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;border:3px solid rgba(255,255,255,.28);border-top-color:#fff;border-radius:50%;animation:vspin .8s linear infinite;z-index:4}
+.v-note{position:absolute;left:0;right:0;bottom:16px;z-index:4;text-align:center;font-family:var(--font-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+@keyframes vspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.video-thumb.playing .play,.video-thumb.playing .who{display:none}
 .video-thumb .dur{position:absolute;right:11px;bottom:11px;z-index:2;background:rgba(12,12,14,.82);color:#fff;font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;padding:4px 8px;border-radius:5px}
 .video-thumb .who{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
 .video-thumb .who b{display:block;font-family:var(--font-d);font-size:15px;letter-spacing:.02em}
@@ -951,6 +955,16 @@ const WEDA = {
   if (vLink){
     const id = ytId(WEDA.youtubeUrl);
     vLink.href = id ? WEDA.youtubeUrl : "#";
+    // Open the DNS/TLS connections to YouTube the moment the pointer arrives,
+    // so the click itself has less to wait for. Costs nothing on page load.
+    let warmed = false;
+    const warm = ()=>{
+      if (warmed || !id) return; warmed = true;
+      ["https://www.youtube-nocookie.com","https://i.ytimg.com","https://rr1---sn-cvh7knzk.googlevideo.com","https://fonts.gstatic.com"]
+        .forEach(h=>{ const l=document.createElement("link"); l.rel="preconnect"; l.href=h; l.crossOrigin=""; document.head.appendChild(l); });
+    };
+    vLink.addEventListener("pointerenter", warm, {once:true});
+    vLink.addEventListener("touchstart", warm, {once:true, passive:true});
     vLink.addEventListener("click", e=>{
       e.preventDefault();
       if (vLink.classList.contains("playing")) return;
@@ -962,8 +976,12 @@ const WEDA = {
         note.innerHTML = "<b>Video not set yet</b>Set <code>WEDA.youtubeUrl</code> in index.html to the video you want to play here.";
         return;
       }
+      const spin = document.createElement("span"); spin.className = "v-load";
+      const note = document.createElement("span"); note.className = "v-note"; note.textContent = "Loading the video\u2026";
+      vLink.append(spin, note);
       const f = document.createElement("iframe");
       f.className = "video-frame";
+      f.addEventListener("load", ()=>{ f.classList.add("ready"); spin.remove(); note.remove(); });
       f.src = "https://www.youtube-nocookie.com/embed/" + id +
               "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
       f.title = "WEDA - exam strategy video";
