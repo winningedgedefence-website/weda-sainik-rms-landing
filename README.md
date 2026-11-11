@@ -57,7 +57,7 @@ mark until its file exists, so the page never shows a broken image and never loo
 | File | Where | Suggested size |
 |---|---|---|
 | `assets/hero-cadets.webp` | Hero, right side | 1600 × 1200 |
-| `assets/col-amardeep.webp` | Video thumbnail | 1280 × 720 |
+| `assets/video-thumb.webp` | Video thumbnail | present (from the YouTube video) |
 | `assets/sainik-cadets.webp` | Sainik School section | 1500 × 1000 |
 | `assets/rms-cadets.webp` | RMS section | 1500 × 1000 |
 
