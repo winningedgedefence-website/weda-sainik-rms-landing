@@ -142,10 +142,10 @@ h2 .r{color:var(--red)}
 /* ---------- image slots ----------
    Drop a file at the path in --img and it appears automatically.
    Until then the designed fallback below is shown. No broken images. */
-.shot{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);background:
+.shot{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);background-color:#17171b;background:
    linear-gradient(145deg,#17171b 0%,#0c0c0e 52%,#2a0a0e 100%);
   background-image:var(--img,linear-gradient(145deg,#17171b 0%,#0c0c0e 52%,#2a0a0e 100%));
-  background-size:cover;background-position:center;box-shadow:var(--shadow-hi)}
+  background-size:cover;background-position:center;background-color:#17171b;box-shadow:var(--shadow-hi)}
 .shot::after{content:attr(data-label);position:absolute;left:14px;bottom:14px;font-family:var(--font-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.52);background:rgba(12,12,14,.5);backdrop-filter:blur(6px);padding:6px 10px;border-radius:7px;max-width:calc(100% - 28px)}
 .shot[data-has-img]::after{display:none}
 .shot .mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.14}
