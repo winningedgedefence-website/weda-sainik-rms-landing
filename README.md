@@ -77,9 +77,8 @@ That is the public enquiry form of the WEDA CRM (`weda-crm`). The parent fills i
 email, date of birth and what they are interested in, and the lead is written straight into the
 CRM with the source `Enquiry Form`. To point every button somewhere else, change that one line.
 
-**No payment is taken on this site.** There is no Razorpay link, no checkout and no payment
-code — the ₹500 demo registration fee is collected by the academy off the page, after the
-counsellor has spoken to the parent.
+**No payment is taken on this site and no fee is shown on it.** There is no payment link, no
+checkout and no payment code. A counsellor settles any fee with the parent off the page.
 
 The only WhatsApp link left is the number in the footer, which opens a chat with the admission
 message already typed.
@@ -134,9 +133,9 @@ vercel.json  package.json
 There is no enquiry form on the page itself and no Contact Us button: the page collects nothing,
 it hands the visitor to the CRM form.
 
-> **Worth knowing:** the Razorpay payment page and the server-side payment code (`api/`, `test/`,
-> `.env.example`) were removed on the `crm-form-ctas` branch. They are still in the history of
-> `sainik-rms-2026` if online payment is ever wanted back.
+> **Worth knowing:** the online payment page and the server-side payment code (`api/`, `test/`,
+> `.env.example`) were removed. They are still in the history of `sainik-rms-2026` if online
+> payment is ever wanted back.
 
 ### What the page does not claim
 
