@@ -506,7 +506,7 @@ footer ul a:hover{color:var(--red)}
       </nav>
       <div class="nav-cta">
         <a href="#" class="btn btn-ink btn-sm hide-md" data-admit>Admission</a>
-        <a class="btn btn-red btn-sm" data-register href="#" target="_blank" rel="noopener">Register Now</a>
+        <a class="btn btn-red btn-sm" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> WhatsApp</a>
         <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobMenu"><span></span></button>
       </div>
       <div class="mob-menu" id="mobMenu">
@@ -541,7 +541,7 @@ footer ul a:hover{color:var(--red)}
         </ul>
         <div class="hero-cta">
           <a href="#" class="btn btn-red btn-lg" data-admit>Apply for Admission <span class="ar">&rarr;</span></a>
-          <a class="btn btn-ghost btn-lg" data-register href="#" target="_blank" rel="noopener">Register Now</a>
+          <a class="btn btn-ghost btn-lg" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Chat on WhatsApp</a>
         </div>
         <div class="hero-trust">
           <div class="t"><b>6<span style="color:var(--red)">th</span> &amp; 9<span style="color:var(--red)">th</span></b><span>Entry Classes</span></div>
@@ -779,7 +779,7 @@ footer ul a:hover{color:var(--red)}
         <div class="amt">5+1</div>
         <div class="lbl">Days of Demo Classes</div>
         <p class="note">Tell us about your child and a counsellor calls you with the batch, the timings and the next start date.</p>
-        <a class="btn btn-red btn-lg btn-block" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
+        <a href="#" class="btn btn-red btn-lg btn-block" data-admit>Apply for Admission <span class="ar">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -795,7 +795,7 @@ footer ul a:hover{color:var(--red)}
       <p>The right guidance, preparation and mentorship for the first step towards a life in uniform.</p>
       <div class="fb">
         <a href="#" class="btn btn-outline-wht btn-lg" data-admit>Apply for Admission</a>
-        <a class="btn btn-red btn-lg" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
+        <a class="btn btn-red btn-lg" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Chat on WhatsApp</a>
       </div>
     </div>
   </div>
@@ -858,7 +858,7 @@ footer ul a:hover{color:var(--red)}
 <!-- sticky mobile bar -->
 <div class="mbar">
   <a href="#" class="btn btn-ghost btn-sm" data-admit>Apply for Admission</a>
-  <a class="btn btn-red btn-sm" data-register href="#" target="_blank" rel="noopener">Register Now</a>
+  <a class="btn btn-red btn-sm" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> WhatsApp</a>
 </div>
 
 <script>
@@ -889,8 +889,8 @@ const WEDA = {
   refundUrl:  "refund.html",
 
   // ---- CRM enquiry form ----------------------------------------
-  // The WEDA CRM enquiry form. Every Enquire, Apply for Admission and
-  // Register Now button opens this, so the lead lands straight in the CRM.
+  // The WEDA CRM enquiry form. Every Apply for Admission and Enquire
+  // button opens this, so the lead lands straight in the CRM.
   // Change it here and everywhere follows.
   crmFormUrl: "https://crm.thewinningedge.co.in/form.html",
 
@@ -925,9 +925,16 @@ const WEDA = {
   set("lRefund",  {href: WEDA.refundUrl});
   const yr = document.getElementById("yr"); if(yr) yr.textContent = new Date().getFullYear();
 
-  // ENQUIRE / APPLY FOR ADMISSION / REGISTER NOW -> the CRM enquiry form
-  $$("[data-admit],[data-enquire],[data-register]").forEach(a=>{
+  // APPLY FOR ADMISSION / ENQUIRE -> the CRM enquiry form
+  $$("[data-admit],[data-enquire]").forEach(a=>{
     a.setAttribute("href", WEDA.crmFormUrl);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("rel", "noopener");
+  });
+
+  // CHAT ON WHATSAPP -> a chat with the message already typed
+  $$("[data-wa]").forEach(a=>{
+    a.setAttribute("href", waHref);
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener");
   });
