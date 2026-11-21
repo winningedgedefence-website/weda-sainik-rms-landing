@@ -36,7 +36,7 @@ whatsapp:     "917417656633",          // country code, no "+", no spaces
 whatsappShow: "+91 74176 56633",
 phone:        "+917417920356",
 phoneDisplay: "+91 74179 20356",
-youtubeUrl:   "https://www.youtube.com/watch?v=v-j4gvd49oA",
+youtubeUrl:   "https://www.youtube.com/watch?v=3IAc6fkeSpc",
 crmFormUrl:   "https://crm.thewinningedge.co.in/form.html",
 privacyUrl:   "privacy.html",  termsUrl: "terms.html",  refundUrl: "refund.html",
 waMessages:   { admission: "..." }     // pre-fills the footer WhatsApp chat
@@ -56,7 +56,7 @@ mark until its file exists, so the page never shows a broken image and never loo
 | File | Where | Suggested size |
 |---|---|---|
 | `assets/hero-cadets.webp` | Hero, right side | 1600 × 1200 |
-| `assets/video-thumb.webp` | Video thumbnail | present (from the YouTube video) |
+| `assets/video-thumb.jpg` | Video thumbnail | present (the YouTube frame for the video above) |
 | `assets/sainik-cadets.webp` | Sainik School section | 1500 × 1000 |
 | `assets/rms-cadets.webp` | RMS section | 1500 × 1000 |
 
@@ -141,6 +141,5 @@ it hands the visitor to the CRM form.
 
 No success percentages, selection counts, achievements or testimonials appear anywhere: the brief
 ruled them out and none were supplied. Trust is carried by the structure of the programme, the
-Col Amardeep SM (Retd) video and the demo offer. The ₹500 fee is stated as refundable *as per
-applicable demo registration and refund terms* — no refund window or condition has been invented.
-The demo is never described as free.
+Col Amardeep SM (Retd) video and the demo offer. No fee or amount is stated on the page at all,
+and the demo is never described as free — a counsellor settles that with the parent off the page.
