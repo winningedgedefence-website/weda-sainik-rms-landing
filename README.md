@@ -14,9 +14,9 @@ Anton / Archivo / IBM Plex Mono).
 | | |
 |---|---|
 | **Frontend** | One static `index.html`. No build step, no framework, no bundler. |
-| **Backend** | Three serverless functions in `api/` (Node 18+, Vercel-style). |
-| **Payment** | Razorpay Checkout, with the order created and the signature verified **on the server**. |
-| **Weight** | One HTML file + Google Fonts. Razorpay's script loads only when a parent opens the registration form, never on page load. |
+| **Backend** | None. Four HTML pages, one stylesheet, images. |
+| **Leads** | Every call-to-action opens the WEDA CRM enquiry form, so the lead is recorded in the CRM. |
+| **Weight** | One HTML file + Google Fonts. No payment script, no form library, nothing third-party on load. |
 
 The spec asked for React + Tailwind "if supported by the existing project". There was no existing
 project, and the traffic is Meta/Instagram/WhatsApp ads on mobile — so a single static page that
@@ -36,18 +36,17 @@ whatsapp:     "917417656633",          // country code, no "+", no spaces
 whatsappShow: "+91 74176 56633",
 phone:        "+917417920356",
 phoneDisplay: "+91 74179 20356",
-youtubeUrl:   "[INSERT YOUTUBE VIDEO URL]",   // <- Col Amardeep SM (Retd)'s video
-privacyUrl:   "#",  termsUrl: "#",  refundUrl: "#",
-waMessages:   { admission: "...", "6th": "...", "9th": "..." }
+youtubeUrl:   "https://www.youtube.com/watch?v=v-j4gvd49oA",
+crmFormUrl:   "https://crm.thewinningedge.co.in/form.html",
+privacyUrl:   "privacy.html",  termsUrl: "terms.html",  refundUrl: "refund.html",
+waMessages:   { admission: "..." }     // pre-fills the footer WhatsApp chat
 ```
 
 Both numbers and all social links were read off `thewinningedge.co.in`, so they match the main
-site. `waMessages` holds the text each WhatsApp button pre-fills — edit these and your counsellor
-sees exactly which button the parent pressed.
+site.
 
-The video is **never embedded**: no iframe, no player, no YouTube script. The card is static and
-opens YouTube in a new tab. Until a real URL is set, clicking it says so rather than opening a
-dead link.
+The video is a click-to-load facade: no iframe, no player and no YouTube request until the visitor
+clicks the card, and then it plays in place.
 
 ### Photographs
 
@@ -66,36 +65,26 @@ and swaps it in automatically.
 
 ---
 
-## 2. Razorpay
+## 2. The CRM enquiry form
 
-The site uses a **Razorpay Payment Page**. Every REGISTER NOW button opens it in a new tab:
+Every **Enquire**, **Apply for Admission** and **Register Now** button opens one link in a new tab:
 
 ```js
-razorpayPageUrl: "https://pages.razorpay.com/pl_TyPZxID6cmOkJb/view"
+crmFormUrl: "https://crm.thewinningedge.co.in/form.html"
 ```
 
-That link is public and holds no secret, so there is nothing to configure and no keys to set.
-Razorpay runs the form, the payment, the receipt and the refund from their dashboard. **The site
-needs no backend at all** — it is three HTML pages, one stylesheet and three images.
+That is the public enquiry form of the WEDA CRM (`weda-crm`). The parent fills in name, phone,
+email, date of birth and what they are interested in, and the lead is written straight into the
+CRM with the source `Enquiry Form`. To point every button somewhere else, change that one line.
 
-To point the buttons at a different Payment Page, change that one line.
+**No payment is taken on this site.** There is no Razorpay link, no checkout and no payment
+code — the ₹500 demo registration fee is collected by the academy off the page, after the
+counsellor has spoken to the parent.
 
-### What this means in practice
+The only WhatsApp link left is the number in the footer, which opens a chat with the admission
+message already typed.
 
-- The parent completes payment on Razorpay's own page, so the payment itself is handled and
-  verified by Razorpay. Nothing can be spoofed on our side because our side does nothing.
-- **The landing page never learns whether a payment succeeded.** There is no confirmation screen
-  and no record on your side — Razorpay's dashboard and its receipt email are the record.
-- **You only capture the fields your Payment Page asks for.** If target class and learning mode
-  matter to you, add them as custom fields on the Payment Page in Razorpay.
-
-### The server-verified alternative is still in this repo
-
-`api/` and `test/` hold the original integration: server-created orders, HMAC signature
-verification, webhooks, idempotency and a ₹500 amount locked server-side. Nothing on the page
-calls it now. Use it instead of the Payment Page when you want the registration recorded on your
-own side with a confirmation screen and a reference number. `.env.example` lists the variables it
-needs. `npm test` still exercises it (18 checks).
+---
 
 ## 3. Deploy
 
@@ -105,36 +94,22 @@ vercel          # preview
 vercel --prod   # production
 ```
 
-Then add the same environment variables under **Vercel → Project → Settings → Environment
-Variables**, and set `ALLOWED_ORIGIN` to your real domain.
-
-Any host that runs Node 18 serverless functions works the same way. For a plain static host with no
-backend, the page still functions — the forms fall back to a pre-filled WhatsApp message, and the
-payment step says plainly that online payment is not enabled rather than faking a success screen.
+Nothing needs environment variables: the site is static and has no serverless functions. Any
+static host works the same way.
 
 ---
 
 ## 4. Test
 
-```bash
-npm test
-```
-
-18 checks covering input validation, the fixed ₹500 amount, Razorpay checkout-signature
-verification (including tampered order ids, tampered payment ids and wrong secrets) and raw-body
-webhook-signature verification.
-
-Then test the payment path end to end with Razorpay in Test Mode — card `4111 1111 1111 1111`,
-any future expiry, any CVV. Check:
+Open the page and check:
 
 - [ ] Sticky nav, smooth scrolling, every CTA
-- [ ] Every APPLY FOR ADMISSION button opens WhatsApp with the message pre-filled
-- [ ] ENQUIRE FOR CLASS 6 / 9 open WhatsApp naming the right class
-- [ ] REGISTER NOW opens the modal, not WhatsApp
-- [ ] Demo registration → payment → verified confirmation with a reference
-- [ ] Cancel the Razorpay window mid-payment → honest "not completed" message, no false success
-- [ ] The video card opens YouTube in a new tab
-- [ ] Mobile: no horizontal scroll, sticky bottom Register bar, forms usable one-handed
+- [ ] Every APPLY FOR ADMISSION button opens the CRM enquiry form in a new tab
+- [ ] ENQUIRE FOR CLASS 6 / 9 open the same CRM form
+- [ ] REGISTER NOW opens the same CRM form — no payment page anywhere
+- [ ] The footer WhatsApp link opens WhatsApp with the message pre-filled
+- [ ] The video card plays the video in place on the first click
+- [ ] Mobile: no horizontal scroll, sticky bottom bar, both buttons usable one-handed
 
 ---
 
@@ -142,33 +117,26 @@ any future expiry, any CVV. Check:
 
 ```
 index.html                  the whole page — config block near the bottom
-assets/                     hero-cadets · sainik-cadets · rms-cadets (+ col-amardeep when supplied)
-api/
-  create-order.js           STEP 1  server-created order, amount fixed at ₹500
-  verify-payment.js         STEP 2  HMAC signature verification, idempotent
-  razorpay-webhook.js       reliable confirmation, raw-body signature, de-duplicated
-  _lib/config.js            env, mode switch, fixed amount, CORS
-  _lib/store.js             memory | file | upstash + notify webhook + reference codes
-  _lib/validate.js          server-side validation of the registration
-test/selftest.js            18 checks
-vercel.json  .env.example  package.json
+privacy.html  terms.html  refund.html
+assets/                     hero-cadets · sainik-cadets · rms-cadets · video-thumb
+vercel.json  package.json
 ```
 
-### Two actions, nothing else
-
-The page asks the visitor to do one of two things:
+### One destination, nothing else
 
 | Button | Where | Goes to |
 |---|---|---|
-| **Apply for Admission** | nav, hero, admission section, final CTA, mobile bar | WhatsApp, pre-filled |
-| **Enquire for Class 6 / 9** | course cards | WhatsApp, pre-filled with the class |
-| **Register Now — ₹500** | nav, hero, demo section, final CTA, mobile bar | Razorpay |
+| **Apply for Admission** | nav, hero, admission section, final CTA, mobile bar | CRM enquiry form |
+| **Enquire for Class 6 / 9** | course cards | CRM enquiry form |
+| **Register Now** | nav, hero, demo section, final CTA, mobile bar | CRM enquiry form |
+| WhatsApp number | footer | WhatsApp, pre-filled |
 
-There is **no enquiry form and no Contact Us button**. Nothing on the page collects details except
-the demo registration, which exists only to take the ₹500 through Razorpay.
+There is no enquiry form on the page itself and no Contact Us button: the page collects nothing,
+it hands the visitor to the CRM form.
 
-> **Worth knowing:** every admission lead now arrives only as a WhatsApp message. Nothing is
-> written to a database or a sheet. If nobody answers, there is no record the lead existed.
+> **Worth knowing:** the Razorpay payment page and the server-side payment code (`api/`, `test/`,
+> `.env.example`) were removed on the `crm-form-ctas` branch. They are still in the history of
+> `sainik-rms-2026` if online payment is ever wanted back.
 
 ### What the page does not claim
 

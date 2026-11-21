@@ -540,7 +540,7 @@ footer ul a:hover{color:var(--red)}
           <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> 5+1 Day Risk-Free Demo</li>
         </ul>
         <div class="hero-cta">
-          <a href="#" class="btn btn-red btn-lg" data-admit><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Apply for Admission <span class="ar">&rarr;</span></a>
+          <a href="#" class="btn btn-red btn-lg" data-admit>Apply for Admission <span class="ar">&rarr;</span></a>
           <a class="btn btn-ghost btn-lg" data-register href="#" target="_blank" rel="noopener">Register Now</a>
         </div>
         <div class="hero-trust">
@@ -780,7 +780,6 @@ footer ul a:hover{color:var(--red)}
         <div class="lbl">Refundable Registration Fee</div>
         <p class="note">Refundable if your child does not continue. Tell us within 72 hours. <a href="refund.html" style="color:#fff;text-decoration:underline">Refund Policy</a>.</p>
         <a class="btn btn-red btn-lg btn-block" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
-        <div class="secure"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg> Secure checkout by Razorpay</div>
       </div>
     </div>
   </div>
@@ -795,7 +794,7 @@ footer ul a:hover{color:var(--red)}
       <h2>YOUR CHILD'S JOURNEY TOWARDS A <span class="r">DISCIPLINED FUTURE</span> BEGINS HERE!</h2>
       <p>The right guidance, preparation and mentorship for the first step towards a life in uniform.</p>
       <div class="fb">
-        <a href="#" class="btn btn-outline-wht btn-lg" data-admit><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Apply for Admission</a>
+        <a href="#" class="btn btn-outline-wht btn-lg" data-admit>Apply for Admission</a>
         <a class="btn btn-red btn-lg" data-register href="#" target="_blank" rel="noopener">Register Now <span class="ar">&rarr;</span></a>
       </div>
     </div>
@@ -859,7 +858,7 @@ footer ul a:hover{color:var(--red)}
 
 <!-- sticky mobile bar -->
 <div class="mbar">
-  <a href="#" class="btn btn-ghost btn-sm" data-admit><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Apply for Admission</a>
+  <a href="#" class="btn btn-ghost btn-sm" data-admit>Apply for Admission</a>
   <a class="btn btn-red btn-sm" data-register href="#" target="_blank" rel="noopener">Register Now</a>
 </div>
 
@@ -876,9 +875,6 @@ const WEDA = {
   phone:        "+917417920356",                 // tel: number
   phoneDisplay: "+91 74179 20356",
 
-  // Absolute logo URL shown inside the Razorpay checkout window.
-  logoUrl:      "https://thewinningedge.co.in/assets/logo-mark.png",   // shown by Razorpay
-
   // ---- Video ---------------------------------------------------
   // Replace with the real Col Amardeep SM (Retd) video. Opens in a new tab.
   youtubeUrl:   "https://www.youtube.com/watch?v=v-j4gvd49oA",
@@ -893,18 +889,16 @@ const WEDA = {
   termsUrl:   "terms.html",
   refundUrl:  "refund.html",
 
-  // ---- Razorpay ------------------------------------------------
-  // Razorpay Payment Page. Public link - contains no secret.
-  // Every REGISTER NOW button opens this. Change it here and everywhere follows.
-  razorpayPageUrl: "https://pages.razorpay.com/pl_TyPZxID6cmOkJb/view",
+  // ---- CRM enquiry form ----------------------------------------
+  // The WEDA CRM enquiry form. Every Enquire, Apply for Admission and
+  // Register Now button opens this, so the lead lands straight in the CRM.
+  // Change it here and everywhere follows.
+  crmFormUrl: "https://crm.thewinningedge.co.in/form.html",
 
-  // ---- WhatsApp messages -------------------------------------
-  // Every admission button opens WhatsApp with one of these already typed,
-  // so the counsellor can see which button the parent pressed.
+  // ---- WhatsApp message --------------------------------------
+  // The WhatsApp link in the footer opens a chat with this already typed.
   waMessages: {
-    admission: "Hello WEDA, I would like to apply for admission for the Sainik School / RMS preparation (Class 6th & 9th). Please guide me.",
-    "6th":     "Hello WEDA, I am interested in the CLASS 6TH Sainik School & RMS entrance preparation. Please share the batch details and fees.",
-    "9th":     "Hello WEDA, I am interested in the CLASS 9TH Sainik School & RMS entrance preparation. Please share the batch details and fees."
+    admission: "Hello WEDA, I would like to apply for admission for the Sainik School / RMS preparation (Class 6th & 9th). Please guide me."
   }
 };
 
@@ -932,17 +926,9 @@ const WEDA = {
   set("lRefund",  {href: WEDA.refundUrl});
   const yr = document.getElementById("yr"); if(yr) yr.textContent = new Date().getFullYear();
 
-  // APPLY FOR ADMISSION -> WhatsApp, with the message already written
-  $$("[data-admit]").forEach(a=>{
-    a.setAttribute("href", waHref);
-    a.setAttribute("target", "_blank");
-    a.setAttribute("rel", "noopener");
-  });
-
-  // ENQUIRE FOR CLASS 6 / 9 -> WhatsApp, naming the class
-  $$("[data-enquire]").forEach(a=>{
-    const cls = a.getAttribute("data-enquire");
-    a.setAttribute("href", waWith(WEDA.waMessages[cls] || WEDA.waMessages.admission));
+  // ENQUIRE / APPLY FOR ADMISSION / REGISTER NOW -> the CRM enquiry form
+  $$("[data-admit],[data-enquire],[data-register]").forEach(a=>{
+    a.setAttribute("href", WEDA.crmFormUrl);
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener");
   });
@@ -1048,13 +1034,6 @@ const WEDA = {
     const row = tickItems.map(t=>'<span>&#9733; <b>//</b> '+t+'</span>').join("");
     tick.innerHTML = row + row;
   }
-
-  /* ---------- REGISTER NOW -> Razorpay Payment Page ---------- */
-  $$("[data-register]").forEach(a=>{
-    a.setAttribute("href", WEDA.razorpayPageUrl);
-    a.setAttribute("target", "_blank");
-    a.setAttribute("rel", "noopener");
-  });
 })();
 </script>
 </body>
