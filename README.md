@@ -36,7 +36,7 @@ whatsapp:     "917417656633",          // country code, no "+", no spaces
 whatsappShow: "+91 74176 56633",
 phone:        "+917417920356",
 phoneDisplay: "+91 74179 20356",
-youtubeUrl:   "https://www.youtube.com/watch?v=3IAc6fkeSpc",
+youtubeUrl:   "https://youtu.be/BDSPUf4ycBo",
 crmFormUrl:   "https://crm.thewinningedge.co.in/form.html",
 privacyUrl:   "privacy.html",  termsUrl: "terms.html",  refundUrl: "refund.html",
 waMessages:   { admission: "..." }     // pre-fills the footer WhatsApp chat
