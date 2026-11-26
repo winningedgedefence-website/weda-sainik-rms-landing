@@ -513,7 +513,7 @@ footer ul a:hover{color:var(--red)}
         <a href="#demo">Demo Classes</a>
       </nav>
       <div class="nav-cta">
-        <a href="#" class="btn btn-ink btn-sm hide-md" data-admit>Admission</a>
+        <a href="#" class="btn btn-ink btn-sm hide-md" data-admit>Book a Free Call</a>
         <a class="btn btn-red btn-sm" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> WhatsApp</a>
         <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobMenu"><span></span></button>
       </div>
@@ -526,7 +526,7 @@ footer ul a:hover{color:var(--red)}
         <a href="#batches">Batches</a>
         <a href="#demo">Demo Classes</a>
         <div class="mm-cta">
-          <a href="#" class="btn btn-ink btn-sm" data-admit>Apply for Admission</a>
+          <a href="#" class="btn btn-ink btn-sm" data-admit>Book a Free Call</a>
         </div>
       </div>
     </div>
@@ -548,7 +548,7 @@ footer ul a:hover{color:var(--red)}
           <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg> 5+1 Day Demo Classes</li>
         </ul>
         <div class="hero-cta">
-          <a href="#" class="btn btn-red btn-lg" data-admit>Apply for Admission <span class="ar">&rarr;</span></a>
+          <a href="#" class="btn btn-red btn-lg" data-admit>Book a Free Call <span class="ar">&rarr;</span></a>
           <a class="btn btn-ghost btn-lg" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Chat on WhatsApp</a>
         </div>
         <div class="hero-trust">
@@ -787,7 +787,7 @@ footer ul a:hover{color:var(--red)}
         <div class="amt">5+1</div>
         <div class="lbl">Days of Demo Classes</div>
         <p class="note">Tell us about your child and a counsellor calls you with the batch, the timings and the next start date.</p>
-        <a href="#" class="btn btn-red btn-lg btn-block" data-admit>Apply for Admission <span class="ar">&rarr;</span></a>
+        <a href="#" class="btn btn-red btn-lg btn-block" data-admit>Book a Free Call <span class="ar">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -802,7 +802,7 @@ footer ul a:hover{color:var(--red)}
       <h2>YOUR CHILD'S JOURNEY TOWARDS A <span class="r">DISCIPLINED FUTURE</span> BEGINS HERE!</h2>
       <p>The right guidance, preparation and mentorship for the first step towards a life in uniform.</p>
       <div class="fb">
-        <a href="#" class="btn btn-outline-wht btn-lg" data-admit>Apply for Admission</a>
+        <a href="#" class="btn btn-outline-wht btn-lg" data-admit>Book a Free Call</a>
         <a class="btn btn-red btn-lg" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> Chat on WhatsApp</a>
       </div>
     </div>
@@ -865,7 +865,7 @@ footer ul a:hover{color:var(--red)}
 
 <!-- sticky mobile bar -->
 <div class="mbar">
-  <a href="#" class="btn btn-ghost btn-sm" data-admit>Apply for Admission</a>
+  <a href="#" class="btn btn-ghost btn-sm" data-admit>Book a Free Call</a>
   <a class="btn btn-red btn-sm" data-wa href="#" target="_blank" rel="noopener"><svg class="bi" viewBox="0 0 24 24"><use href="#i-wa"/></svg> WhatsApp</a>
 </div>
 
@@ -897,7 +897,7 @@ const WEDA = {
   refundUrl:  "refund.html",
 
   // ---- CRM enquiry form ----------------------------------------
-  // The WEDA CRM enquiry form. Every Apply for Admission and Enquire
+  // The WEDA CRM enquiry form. Every Book a Free Call and Enquire
   // button opens this, so the lead lands straight in the CRM.
   // Change it here and everywhere follows.
   crmFormUrl: "https://crm.thewinningedge.co.in/form.html",
@@ -933,7 +933,7 @@ const WEDA = {
   set("lRefund",  {href: WEDA.refundUrl});
   const yr = document.getElementById("yr"); if(yr) yr.textContent = new Date().getFullYear();
 
-  // APPLY FOR ADMISSION / ENQUIRE -> the CRM enquiry form
+  // BOOK A FREE CALL / ENQUIRE -> the CRM enquiry form
   $$("[data-admit],[data-enquire]").forEach(a=>{
     a.setAttribute("href", WEDA.crmFormUrl);
     a.setAttribute("target", "_blank");
